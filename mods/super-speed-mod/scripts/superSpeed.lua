@@ -3,15 +3,13 @@ local mod = {
 }
 
 function mod:onload(character)
-    local originalUpdate = character.update
+    local originalMoveTo = character.moveTo
 
-    character.update = function(self, dt)
-        originalUpdate(self, dt)
-        
-        -- Increase the character's movement speed
-        if self.movement and self.movement.speed then
-            self.movement.speed = self.movement.speed * 5
+    character.moveTo = function(self, destination, speed, ...)
+        if speed then
+            speed = speed * 5  -- Multiply the movement speed by 5
         end
+        return originalMoveTo(self, destination, speed, ...)
     end
 end
 
