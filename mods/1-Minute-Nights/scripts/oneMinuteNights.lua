@@ -3,9 +3,10 @@ local mod = {
 }
 
 function mod:onload(world)
+    local config = mjrequire "config"  -- Load the configuration
     local nightStart = 0.5  -- Start of night (in game time)
     local nightEnd = 0.75   -- End of night (in game time)
-    local realTimeDuration = 60  -- 1 minute in seconds
+    local realTimeDuration = config.nightDurationInSeconds
     local gameSecondsInADay = 86400  -- Total game seconds in a day (24 hours * 60 minutes * 60 seconds)
 
     local function adjustNightDuration(time)
@@ -26,4 +27,3 @@ function mod:onload(world)
 end
 
 return mod
-
